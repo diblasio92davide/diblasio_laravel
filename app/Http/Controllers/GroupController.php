@@ -75,7 +75,13 @@ class GroupController extends Controller
      */
     public function update(Request $request, Group $group)
     {
-        //
+        //ottiene da requeste i dati dal client e aggiorna il model $group e lo restituisce
+        if($group->update($request->all())){
+            return $group;
+        }else{
+            throw \Exception('Operazione non riuscita');
+        }
+
     }
 
     /**
@@ -87,5 +93,7 @@ class GroupController extends Controller
     public function destroy(Group $group)
     {
         //
+        $group->delete();
+        return $group;
     }
 }
